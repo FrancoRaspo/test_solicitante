@@ -21,7 +21,9 @@ public class PruebaApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**");
+				registry.addMapping("/**")
+					.allowedOrigins("*")
+					.allowedMethods("*");
 			}
 		};
 	}	
