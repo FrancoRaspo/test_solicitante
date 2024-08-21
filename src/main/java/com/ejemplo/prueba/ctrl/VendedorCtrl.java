@@ -50,13 +50,13 @@ public class VendedorCtrl {
 	@Autowired
 	VendedorRepository vendedorRepository;
 
-	@GetMapping(path = "/todos", produces = "application/json")
+	@GetMapping(produces = "application/json")
 	@Transactional
 	public ResponseEntity<List<VendedorResponse>> buscarVendedores() {
 
 		List<Vendedor> vendedores = vendedorRepository.findAll();
 
-		List<VendedorResponse> respuesta = vendedores.stream().map(v -> new VendedorResponse(v))
+		List<VendedorResponse> respuesta = vendedores.stream().map(VendedorResponse::new)
 				.collect(Collectors.toList());
 
 		return ResponseEntity.ok(respuesta);

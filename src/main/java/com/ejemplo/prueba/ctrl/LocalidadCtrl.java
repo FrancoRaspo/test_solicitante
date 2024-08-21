@@ -24,12 +24,12 @@ public class LocalidadCtrl {
 	@Autowired
 	LocalidadRepository localidadRepository;
 
-	@GetMapping(path = "/todas", produces = "application/json")
+	@GetMapping(produces = "application/json")
 	public ResponseEntity<List<LocalidadResponse>> buscarLocalidades() {
 
 		List<Localidad> localidades = localidadRepository.findAll();
 
-		List<LocalidadResponse> respuesta = localidades.stream().map(l -> new LocalidadResponse(l))
+		List<LocalidadResponse> respuesta = localidades.stream().map(LocalidadResponse::new)
 				.collect(Collectors.toList());
 
 		return ResponseEntity.ok(respuesta);
